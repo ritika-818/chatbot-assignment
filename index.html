@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="chat-header-icon">
+                <img src="chatbot-icon.png" alt="ChatBot Icon">
+            </div>
+            <div class="chat-header-title">
+                <h3>ChatBot</h3>
+                <span>Online</span>
+            </div>
+        </div>
+        <div class="chat-content" id="conversation">
+            <div class="chatbot-message">
+                <span>Hi! I'm Mr. Chatbot 😎 Nice to meet you! 👋</span>
+            </div>
+            <div class="chatbot-message">
+                <span>What information are you looking for?</span>
+            </div>
+            <div class="quick-replies">
+                <button class="botquestion__replies--text">🌡️ Temperature</button>
+                <button class="botquestion__replies--text">🕛 Time</button>
+                <button class="botquestion__replies--text">🎐 Wind Speed</button>
+                <button class="botquestion__replies--text">⛅ Weather Status</button>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="input-box" placeholder="Type your message here..." disabled>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
