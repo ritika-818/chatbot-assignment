@@ -10,7 +10,7 @@ body {
 
 .chat-container {
     width: 350px;
-    background-color: white;
+    background-color: rgb(178, 178, 246);
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -19,6 +19,7 @@ body {
 }
 
 .chat-header {
+    width: 350px;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -29,6 +30,7 @@ body {
 .chat-header-icon img {
     width: 40px;
     height: 40px;
+    border-radius: 50%;
 }
 
 .chat-header-title {
@@ -47,23 +49,26 @@ body {
 .chat-content {
     padding: 15px;
     height: 300px;
-    overflow-y: auto;
+    overflow-y: scroll;
+}
+
+.chat-container::-webkit-scrollbar{
+    display: none;
 }
 
 .chatbot-message {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
     margin-bottom: 15px;
     font-size: 14px;
 }
 
-.quick-replies {
-    display: flex;
-    justify-content: space-around;
-}
-
 .quick-replies button {
     background-color: #f0f0f0;
-    border: 1px solid #ddd;
+    border: 2px solid blue;
     border-radius: 20px;
+    margin-bottom: 5px;
     padding: 10px 15px;
     cursor: pointer;
     font-size: 14px;
@@ -71,17 +76,20 @@ body {
 }
 
 .quick-replies button:hover {
-    background-color: #e0e0e0;
+    background-color: blue;
+    color: white;
 }
 
 .chat-input-container {
+    width: 350px;
     padding: 10px;
     background-color: #f1f1f1;
     border-top: 1px solid #ddd;
 }
 
 #input-box {
-    width: 100%;
+    margin-left: 10px;
+    width: 85%;
     padding: 10px;
     border-radius: 20px;
     border: 1px solid #ddd;

@@ -1,7 +1,6 @@
 
 let city = "";
 
-// Function to fetch weather data and handle different responses
 const getData = (city, response) => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=66994ba9a9d0ad6d2d9d878fc92faf52`)
     .then((response) => {
@@ -42,19 +41,18 @@ const getData = (city, response) => {
     });
 };
 
-// Function to ask the user if they want more information
 const askForMoreInfo = () => {
     const conversation = document.getElementById('conversation');
 
     conversation.innerHTML += `
         <div class="chatbot-message">Do you want more information?</div>
-        <div class="chatbot-quick-replies">
+        <div class="quick-replies">
             <button class="botquestion__replies--text">Yes</button>
             <button class="botquestion__replies--text">No</button>
         </div>
     `;
 
-    const quickreplies = document.querySelectorAll('.chatbot-quick-replies .botquestion__replies--text');
+    const quickreplies = document.querySelectorAll('.quick-replies .botquestion__replies--text');
     quickreplies.forEach(reply => {
         reply.addEventListener('click', () => {
             if (reply.textContent === 'Yes') {
@@ -67,19 +65,18 @@ const askForMoreInfo = () => {
     });
 };
 
-// Function to ask if the user wants to provide the same or different city
 const askSameOrDifferentCity = () => {
     const conversation = document.getElementById('conversation');
 
     conversation.innerHTML += `
         <div class="chatbot-message">Same city or different city?</div>
-        <div class="chatbot-quick-replies">
+        <div class="quick-replies">
             <button class="botquestion__replies--text">Same City</button>
             <button class="botquestion__replies--text">Different City</button>
         </div>
     `;
 
-    const quickreplies = document.querySelectorAll('.chatbot-quick-replies .botquestion__replies--text');
+    const quickreplies = document.querySelectorAll('.quick-replies .botquestion__replies--text');
     quickreplies.forEach(reply => {
         reply.addEventListener('click', () => {
             if (reply.textContent === 'Same City') {
@@ -94,7 +91,6 @@ const askSameOrDifferentCity = () => {
     });
 };
 
-// Function to show options for the current city
 const showOptionsForCity = () => {
     const conversation = document.getElementById('conversation');
 
@@ -112,7 +108,6 @@ const showOptionsForCity = () => {
     quickReplyEvent(quickreplies);
 };
 
-// Function to handle quick reply button clicks
 const quickReplyEvent = (quickreplies) => {
     quickreplies.forEach(reply => {
         reply.addEventListener('click', () => {
@@ -128,7 +123,6 @@ const quickReplyEvent = (quickreplies) => {
     });
 };
 
-// Function to enable the input field and set up event listeners
 const enableInput = (response = "") => {
     const input = document.getElementById('input-box');
     input.disabled = false;
@@ -146,12 +140,11 @@ const enableInput = (response = "") => {
                 conversation.innerHTML += `<div class="chatbot-message">Please enter a valid city name! 🤕</div>`;
                 input.focus();
             }
-            input.removeEventListener('keydown', handleEnter); // Ensure the event listener is removed after use
+            input.removeEventListener('keydown', handleEnter);
         }
     });
 };
 
-// Initialize quick replies on DOM content load
 document.addEventListener("DOMContentLoaded", () => {
     const quickreplies = document.querySelectorAll('.botquestion__replies--text');
     quickReplyEvent(quickreplies);
