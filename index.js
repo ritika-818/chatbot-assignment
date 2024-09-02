@@ -113,9 +113,9 @@ const askSameOrDifferentCity = () => {
         showOptionsForCity();
       } else if (reply.textContent === "Different City") {
         city = "";
-        enableInput();
         const conversation = document.getElementById("conversation");
         conversation.innerHTML += `<div class="chatbot-message">Please enter the city name.</div>`;
+        enableInput();
       }
     });
   });
@@ -126,7 +126,7 @@ const showOptionsForCity = () => {
 
   conversation.innerHTML += `
         <div class="chatbot-message">Choose an option for ${city}</div>
-        <div class="chatbot-quick-replies">
+        <div class="quick-replies">
             <button class="botquestion__replies--text">🌡️ Temperature</button>
             <button class="botquestion__replies--text">🕛 Time</button>
             <button class="botquestion__replies--text">🎐 Wind Speed</button>
