@@ -1,6 +1,24 @@
 
 let city = "";
+const icon = document.getElementsByClassName("chat-header-icon-right")[0];
+const cross = document.getElementsByClassName("cross")[0];
+const container = document.getElementsByClassName("chat-container")[0];
+const bottomDiv = document.getElementsByClassName("bottom-div")[0];
+const crossRight = document.getElementsByClassName("cross-right")[0];
+const hoverDiv = document.getElementsByClassName("hover-div")[0];
 
+crossRight.addEventListener("click",()=>{
+    hoverDiv.style.display= "none";
+    crossRight.style.display = "none";
+})
+
+cross.addEventListener("click",()=>{
+    container.style.display = "none";
+    icon.style.display="block";
+    bottomDiv.style.display = "block";
+    hoverDiv.style.display= "block";
+    crossRight.style.display = "block";
+})
 const getData = (city, response) => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=66994ba9a9d0ad6d2d9d878fc92faf52`)
     .then((response) => {
@@ -10,7 +28,7 @@ const getData = (city, response) => {
         return response.json();
     })
     .then((data) => {
-        const conversation = document.getElementById('conversation');
+        const conversation =document.getElementById('conversation');
 
         if (response === '🌡️ Temperature') {
             conversation.innerHTML += `<div class="chatbot-message">Temperature: ${data.main.temp} °C</div>`;askForMoreInfo();
@@ -109,6 +127,10 @@ const showOptionsForCity = () => {
 };
 
 const quickReplyEvent = (quickreplies) => {
+    container.style.display = "block";
+    icon.style.display="none";
+    bottomDiv.style.display = "none";
+    console.log(container)
     quickreplies.forEach(reply => {
         reply.addEventListener('click', () => {
             const response = reply.textContent;
@@ -145,7 +167,8 @@ const enableInput = (response = "") => {
     });
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+icon.addEventListener("click", () => {
+    console.log("ritika")
     const quickreplies = document.querySelectorAll('.botquestion__replies--text');
     quickReplyEvent(quickreplies);
 });
