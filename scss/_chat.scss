@@ -60,7 +60,9 @@
       font-size: 14px;
     }
     .user-input {
+        color: $button-bg-color;
       max-width: 150px;
+      min-width: 20px;
       background-color: $button-hover-bg-color;
       padding: 5px;
       text-align: center;
@@ -68,6 +70,7 @@
       left: 160px;
       border-radius: 20px;
       margin-bottom: 10px;
+      line-height: 20px;
     }
     .quick-replies {
       button {

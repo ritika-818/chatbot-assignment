@@ -63,18 +63,21 @@ body {
   font-size: 14px;
 }
 .chat-container .chat-content .user-input {
+  color: #f0f0f0;
   max-width: 150px;
-  background-color: blue;
+  min-width: 20px;
+  background-color: rgb(0, 102, 255);
   padding: 5px;
   text-align: center;
   position: relative;
   left: 160px;
   border-radius: 20px;
   margin-bottom: 10px;
+  line-height: 20px;
 }
 .chat-container .chat-content .quick-replies button {
   background-color: #f0f0f0;
-  border: 2px solid blue;
+  border: 2px solid rgb(0, 102, 255);
   border-radius: 20px;
   margin-bottom: 5px;
   padding: 10px 15px;
@@ -83,7 +86,7 @@ body {
   transition: all 0.3s;
 }
 .chat-container .chat-content .quick-replies button:hover {
-  background-color: blue;
+  background-color: rgb(0, 102, 255);
   color: white;
 }
 .chat-container .chat-input-container {
@@ -101,27 +104,6 @@ body {
   font-size: 14px;
 }
 
-.hover-div {
-  top: -30px;
-  right: -250px;
-  position: absolute;
-  border-radius: 10px;
-  height: 50px;
-  width: 300px;
-  padding: 10px;
-}
-.hover-div:hover {
-  box-shadow: 10px 5px 5px grey;
-}
-
-.cross-right {
-  position: absolute;
-  right: -250px;
-  bottom: 30px;
-  margin-left: 20px;
-  cursor: pointer;
-}
-
 .bottom-div {
   position: relative;
   top: 150px;
@@ -129,6 +111,28 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.bottom-div:hover .cross-right {
+  opacity: 1;
+}
+.bottom-div .hover-div {
+  top: -30px;
+  right: -250px;
+  position: absolute;
+  border-radius: 10px;
+  height: 50px;
+  width: 300px;
+  padding: 10px;
+  box-shadow: 10px 5px 5px grey;
+}
+.bottom-div .cross-right {
+  position: absolute;
+  right: -250px;
+  opacity: 0;
+  bottom: 30px;
+  margin-left: 20px;
+  cursor: pointer;
+  height: 20px;
 }
 .bottom-div .chat-header-icon-right {
   position: fixed;

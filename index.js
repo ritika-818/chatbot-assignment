@@ -20,7 +20,6 @@ cross.addEventListener("click", () => {
   crossRight.style.display = "block";
 });
 const getData = (response) => {
-  conversation.innerHTML += `<div class="user-input">${response}</div>`;
   console.log("response",response);
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=66994ba9a9d0ad6d2d9d878fc92faf52`
@@ -65,8 +64,9 @@ const getData = (response) => {
     .catch((error) => {
       console.log(error);
       const conversation = document.getElementById("conversation");
+      city="";
       conversation.innerHTML += `<div class="chatbot-message">Please enter a valid city name! 🤕</div>`;
-      enableInput();
+      enableInput(response);
     });
 };
 
@@ -127,7 +127,7 @@ const askSameOrDifferentCity = () => {
 const showOptionsForCity = () => {
   const conversation = document.getElementById("conversation");
 
-  conversation.innerHTML += `
+  conversation.innerHTML += `<div class="user-input">${city}</div>
         <div class="chatbot-message">Choose an option for ${city}</div>
         <div class="quick-replies">
             <button class="botquestion__replies--text">🌡️ Temperature</button>
@@ -152,6 +152,7 @@ const enableInput = (response = "", differentCity= false) => {
       input.value = "";
         input.disabled = true;
       if(differentCity === false){
+        conversation.innerHTML += `<div class="user-input">${city}</div>`;
         getData(response);
       } else{
         showOptionsForCity();
@@ -170,6 +171,7 @@ const quickReplyEvent = (quickreplies) => {
   quickreplies.forEach((reply) => {
     reply.addEventListener("click", () => {
       const response = reply.textContent;
+      conversation.innerHTML += `<div class="user-input">${response}</div>`;
       console.log("in event");
       if (city === "") {
         enableInput(response);

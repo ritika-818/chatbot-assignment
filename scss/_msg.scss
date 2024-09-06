@@ -1,4 +1,12 @@
-
+.bottom-div {
+    position: relative;
+    top: 150px;
+    left: 350px;
+    @include flex-center;
+    &:hover .cross-right{
+        opacity: 1;
+    }
+    
 
 .hover-div {
     top: -30px;
@@ -8,25 +16,19 @@
     height: 50px;
     width: 300px;
     padding: 10px;
+    @include box-shadow(10px, 5px, 5px, grey);
 
-    &:hover {
-        @include box-shadow(10px, 5px, 5px, grey);
-    }
 }
 
 .cross-right {
     position: absolute;
     right: -250px;
+    opacity: 0;
     bottom: 30px;
     margin-left: 20px;
     cursor: pointer;
+    height: 20px;
 }
-
-.bottom-div {
-    position: relative;
-    top: 150px;
-    left: 350px;
-    @include flex-center;
 
     .chat-header-icon-right {
         position: fixed;
