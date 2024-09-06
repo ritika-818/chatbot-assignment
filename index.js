@@ -1,4 +1,5 @@
 let city = "";
+let differentCity = false;
 const icon = document.getElementsByClassName("chat-header-icon-right")[0];
 const cross = document.getElementsByClassName("cross")[0];
 const container = document.getElementsByClassName("chat-container")[0];
@@ -18,15 +19,16 @@ cross.addEventListener("click", () => {
   hoverDiv.style.display = "block";
   crossRight.style.display = "block";
 });
-const getData = (city, response) => {
+const getData = (response) => {
+  conversation.innerHTML += `<div class="user-input">${response}</div>`;
+  console.log("response",response);
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=66994ba9a9d0ad6d2d9d878fc92faf52`
-  )
-    .then((response) => {
-      if (!response.ok) {
+  ).then((responseJson) => {
+      if (!responseJson.ok) {
         throw new Error("Invalid city");
       }
-      return response.json();
+      return responseJson.json();
     })
     .then((data) => {
       const conversation = document.getElementById("conversation");
@@ -61,6 +63,7 @@ const getData = (city, response) => {
       }
     })
     .catch((error) => {
+      console.log(error);
       const conversation = document.getElementById("conversation");
       conversation.innerHTML += `<div class="chatbot-message">Please enter a valid city name! 🤕</div>`;
       enableInput();
@@ -115,7 +118,7 @@ const askSameOrDifferentCity = () => {
         city = "";
         const conversation = document.getElementById("conversation");
         conversation.innerHTML += `<div class="chatbot-message">Please enter the city name.</div>`;
-        enableInput();
+        enableInput("",true);
       }
     });
   });
@@ -134,10 +137,29 @@ const showOptionsForCity = () => {
         </div>
     `;
 
-  const quickreplies = document.querySelectorAll(
-    ".chatbot-quick-replies .botquestion__replies--text"
-  );
+    const quickreplies = document.querySelectorAll(".botquestion__replies--text");
   quickReplyEvent(quickreplies);
+};
+
+const enableInput = (response = "", differentCity= false) => {
+  const input = document.getElementById("input-box");
+  input.disabled = false;
+  input.focus();
+
+  input.addEventListener("keydown", function handleEnter(e) {
+    city = input.value.trim();
+    if (e.key === "Enter") {
+      input.value = "";
+        input.disabled = true;
+      if(differentCity === false){
+        getData(response);
+      } else{
+        showOptionsForCity();
+        differentCity = false;
+      }
+      input.removeEventListener("keydown", handleEnter);
+    }
+  });
 };
 
 const quickReplyEvent = (quickreplies) => {
@@ -148,36 +170,16 @@ const quickReplyEvent = (quickreplies) => {
   quickreplies.forEach((reply) => {
     reply.addEventListener("click", () => {
       const response = reply.textContent;
+      console.log("in event");
       if (city === "") {
         enableInput(response);
         const conversation = document.getElementById("conversation");
         conversation.innerHTML += `<div class="chatbot-message">Please enter the city name.</div>`;
       } else {
-        getData(city, response);
+        console.log("after else")
+        getData( response);
       }
     });
-  });
-};
-
-const enableInput = (response = "") => {
-  const input = document.getElementById("input-box");
-  input.disabled = false;
-  input.focus();
-
-  input.addEventListener("keydown", function handleEnter(e) {
-    city = input.value.trim();
-    if (e.key === "Enter") {
-      if (city) {
-        input.value = "";
-        input.disabled = true;
-        getData(city, response);
-      } else {
-        const conversation = document.getElementById("conversation");
-        conversation.innerHTML += `<div class="chatbot-message">Please enter a valid city name! 🤕</div>`;
-        input.focus();
-      }
-      input.removeEventListener("keydown", handleEnter);
-    }
   });
 };
 

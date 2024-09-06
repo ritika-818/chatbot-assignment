@@ -1,0 +1,106 @@
+.chat-container {
+  position: absolute;
+  display: none;
+  width: 350px;
+  background-color: $chat-bg-color;
+  left: 850px;
+  border-radius: 8px;
+  @include box-shadow(0, 10px, 10px, $box-shadow);
+  flex-direction: column;
+  overflow: hidden;
+
+  .chat-header {
+    width: 350px;
+    @include flex-center;
+    padding: 10px;
+    background-color: $header-bg-color;
+    border-bottom: 1px solid $border-color;
+
+    .chat-header-icon {
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    }
+
+    .chat-header-title {
+      margin-left: 10px;
+
+      h3 {
+        margin: 0;
+      }
+
+      span {
+        color: $text-color;
+        font-size: 14px;
+      }
+    }
+
+    .cross {
+      margin-left: 180px;
+      cursor: pointer;
+    }
+  }
+
+  .chat-content {
+    padding: 15px;
+    height: 300px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chatbot-message {
+      background-color: $white;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    .user-input {
+      max-width: 150px;
+      background-color: $button-hover-bg-color;
+      padding: 5px;
+      text-align: center;
+      position: relative;
+      left: 160px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .quick-replies {
+      button {
+        background-color: $button-bg-color;
+        border: 2px solid $button-hover-bg-color;
+        border-radius: 20px;
+        margin-bottom: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 14px;
+        @include transition(all, 0.3s);
+
+        &:hover {
+          background-color: $button-hover-bg-color;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .chat-input-container {
+    width: 350px;
+    padding: 10px;
+    background-color: $header-bg-color;
+    border-top: 1px solid $border-color;
+
+    #input-box {
+      margin-left: 10px;
+      width: 85%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid $border-color;
+      font-size: 14px;
+    }
+  }
+}

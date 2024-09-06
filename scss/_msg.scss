@@ -1,0 +1,46 @@
+
+
+.hover-div {
+    top: -30px;
+    right: -250px;
+    position: absolute;
+    border-radius: 10px;
+    height: 50px;
+    width: 300px;
+    padding: 10px;
+
+    &:hover {
+        @include box-shadow(10px, 5px, 5px, grey);
+    }
+}
+
+.cross-right {
+    position: absolute;
+    right: -250px;
+    bottom: 30px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.bottom-div {
+    position: relative;
+    top: 150px;
+    left: 350px;
+    @include flex-center;
+
+    .chat-header-icon-right {
+        position: fixed;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        right: 10px;
+        bottom: 10px;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+        }
+    }
+}
