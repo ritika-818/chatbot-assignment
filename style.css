@@ -9,6 +9,7 @@ body {
 }
 
 .chat-container {
+  scroll-behavior: smooth;
   position: absolute;
   display: none;
   width: 350px;
@@ -51,6 +52,7 @@ body {
   padding: 15px;
   height: 300px;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 .chat-container .chat-content::-webkit-scrollbar {
   display: none;
@@ -62,15 +64,17 @@ body {
   margin-bottom: 15px;
   font-size: 14px;
 }
-.chat-container .chat-content .user-input {
+.chat-container .chat-content .user-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.chat-container .chat-content .user-container .user-input {
   color: #f0f0f0;
-  max-width: 150px;
-  min-width: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
   background-color: rgb(0, 102, 255);
-  padding: 5px;
+  padding: 10px;
   text-align: center;
-  position: relative;
-  left: 160px;
   border-radius: 20px;
   margin-bottom: 10px;
   line-height: 20px;

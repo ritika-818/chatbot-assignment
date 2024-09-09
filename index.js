@@ -60,12 +60,14 @@ const getData = (response) => {
         }</div>`;
         askForMoreInfo();
       }
+      conversation.scrollTop = conversation.scrollHeight;
     })
     .catch((error) => {
       console.log(error);
       const conversation = document.getElementById("conversation");
       city="";
       conversation.innerHTML += `<div class="chatbot-message">Please enter a valid city name! 🤕</div>`;
+      conversation.scrollTop = conversation.scrollHeight;
       enableInput(response);
     });
 };
@@ -84,6 +86,8 @@ const askForMoreInfo = () => {
   const quickreplies = document.querySelectorAll(
     ".quick-replies .botquestion__replies--text"
   );
+  conversation.scrollTop = conversation.scrollHeight;
+
   quickreplies.forEach((reply) => {
     reply.addEventListener("click", () => {
       if (reply.textContent === "Yes") {
@@ -91,6 +95,7 @@ const askForMoreInfo = () => {
       } else {
         const conversation = document.getElementById("conversation");
         conversation.innerHTML += `<div class="chatbot-message">Thank you for using our service! 😊</div>`;
+        conversation.scrollTop = conversation.scrollHeight;
       }
     });
   });
@@ -106,7 +111,7 @@ const askSameOrDifferentCity = () => {
             <button class="botquestion__replies--text">Different City</button>
         </div>
     `;
-
+    conversation.scrollTop = conversation.scrollHeight;
   const quickreplies = document.querySelectorAll(
     ".quick-replies .botquestion__replies--text"
   );
@@ -118,6 +123,7 @@ const askSameOrDifferentCity = () => {
         city = "";
         const conversation = document.getElementById("conversation");
         conversation.innerHTML += `<div class="chatbot-message">Please enter the city name.</div>`;
+        conversation.scrollTop = conversation.scrollHeight;
         enableInput("",true);
       }
     });
@@ -127,7 +133,7 @@ const askSameOrDifferentCity = () => {
 const showOptionsForCity = () => {
   const conversation = document.getElementById("conversation");
 
-  conversation.innerHTML += `<div class="user-input">${city}</div>
+  conversation.innerHTML += `<div class="user-container"><span class="user-input">${city}</span></div>
         <div class="chatbot-message">Choose an option for ${city}</div>
         <div class="quick-replies">
             <button class="botquestion__replies--text">🌡️ Temperature</button>
@@ -136,7 +142,7 @@ const showOptionsForCity = () => {
             <button class="botquestion__replies--text">⛅ Weather Status</button>
         </div>
     `;
-
+    conversation.scrollTop = conversation.scrollHeight;
     const quickreplies = document.querySelectorAll(".botquestion__replies--text");
   quickReplyEvent(quickreplies);
 };
@@ -152,7 +158,8 @@ const enableInput = (response = "", differentCity= false) => {
       input.value = "";
         input.disabled = true;
       if(differentCity === false){
-        conversation.innerHTML += `<div class="user-input">${city}</div>`;
+        conversation.innerHTML += `<div class="user-container"><span class="user-input">${city}</span></div>`;
+        conversation.scrollTop = conversation.scrollHeight;
         getData(response);
       } else{
         showOptionsForCity();
@@ -171,12 +178,14 @@ const quickReplyEvent = (quickreplies) => {
   quickreplies.forEach((reply) => {
     reply.addEventListener("click", () => {
       const response = reply.textContent;
-      conversation.innerHTML += `<div class="user-input">${response}</div>`;
+      conversation.innerHTML += `<div class="user-container"><span class="user-input">${response}</span></div>`;
+      conversation.scrollTop = conversation.scrollHeight;
       console.log("in event");
       if (city === "") {
         enableInput(response);
         const conversation = document.getElementById("conversation");
         conversation.innerHTML += `<div class="chatbot-message">Please enter the city name.</div>`;
+        conversation.scrollTop = conversation.scrollHeight;
       } else {
         console.log("after else")
         getData( response);
